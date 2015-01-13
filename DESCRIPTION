@@ -1,0 +1,13 @@
+Package: RGhost
+Type: Package
+Title: R wrapper for Ghost blogging api.
+Version: 0.1
+Date: 2015-01-11
+Author: Bob Rietveld
+Maintainer: Bob Rietveld <bob.rietveld@gmail.com>
+Description: Api Wrapper for Ghost blogging platform
+License: GPL-2
+Depends:
+    R (>= 2.12.0),
+    httr (>= 0.4),
+    jsonlite
