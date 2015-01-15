@@ -1,8 +1,10 @@
 create_post_ghost <- function(post_body){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
 
-  post_ghost <- POST("http://good-marketing.org/ghost/api/v0.1/posts?include=tags",
+  ghost_url <- paste(construct_url(),"posts?include=tags",sep="")
+
+  post_ghost <- POST(ghost_url,
                     # encode="json",
                     body = toJSON(post_body,auto_unbox=TRUE),
                     verbose(),

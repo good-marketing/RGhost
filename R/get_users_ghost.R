@@ -1,8 +1,10 @@
 get_users <- function(){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
 
-  get_users <- GET("http://good-marketing.org/ghost/api/v0.1/users",
+  ghost_url <- paste(construct_url(),"users",sep="")
+
+  get_users <- GET(ghost_url,
                       # encode="json",
                       verbose(),
                       add_headers(
@@ -16,9 +18,10 @@ get_users <- function(){
 
 get_current_user <-function(){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
+  ghost_url <- paste(construct_url(),"users/me",sep="")
 
-  get_user <- GET("http://good-marketing.org/ghost/api/v0.1/users/me",
+  get_user <- GET(ghost_url,
                    # encode="json",
                    verbose(),
                    add_headers(

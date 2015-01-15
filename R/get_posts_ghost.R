@@ -5,9 +5,11 @@
 
 get_posts_ghost <- function (){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
 
-  ghost_posts <- GET("http://good-marketing.org/ghost/api/v0.1/posts?status=all",
+  ghost_url <- paste(construct_url(),"posts?status=all",sep="")
+
+  ghost_posts <- GET(ghost_url,
                     # encode="json",
                     verbose(),
                     add_headers(
@@ -30,11 +32,11 @@ get_posts_ghost <- function (){
 
 get_post_ghost <- function(id){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
 
-  url <- paste("http://good-marketing.org/ghost/api/v0.1/posts/",id,sep="")
+  ghost_url <- paste(construct_url(),"posts/",id,"?include=tags&status=all",sep="")
 
-  ghost_post <- GET(url,
+  ghost_post <- GET(ghost_url,
                    verbose(),
                    add_headers(
                      "Content-Type" = "application/json",

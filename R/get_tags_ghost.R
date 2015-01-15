@@ -1,8 +1,9 @@
 get_tags <- function(){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
+  ghost_url <- paste(construct_url(),"tags",sep="")
 
-  get_tags <- GET("http://good-marketing.org/ghost/api/v0.1/tags",
+  get_tags <- GET(ghost_url,
                       # encode="json",
                       verbose(),
                       add_headers(
@@ -13,5 +14,6 @@ get_tags <- function(){
 
   response <- list(flat = parse_content(get_tags),
                    hier = content(get_tags))
+
   return(response)
 }

@@ -6,7 +6,7 @@ construct_response <- function(ghost_response){
   names(return_response)  <- return_response.names
 
     if(ghost_response$status_code == 200 | ghost_response$status_code == 201){
-      return_response$message    <- "Everything is a Ok"
+      return_response$message    <- httr::content(ghost_response)
       return_response$status     <- TRUE
       return_response$content    <- httr::content(ghost_response)
     }
@@ -19,25 +19,25 @@ construct_response <- function(ghost_response){
 
 }
 
-construct_url <- function(token,extension,call) {
+construct_url <- function() {
 
-  version <- "/ghost/api/v0.1/"
+  url_base <-  ghost$return_credentials$url
+  version  <- "/ghost/api/v0.1/"
+  api_ghost_url <- paste0(url_base,version)
 
-  url <- paste(url_base)
+  return(api_ghost_url)
 
 }
 
 construct_post <- function(post_body){
 
   # do error checking is this is a valid object
-
-  body <- list("posts"= post_body)
+  body <- list("posts"= list(post_body))
 
 }
 
 parse_content <- function(post_body){
 
-   parsed_content <- fromJSON(content(post_body,as="text"),flatten=TRUE)[[1]]
-
+   parsed_content <- fromJSON(content(post_body,as="text"),flatten=TRUE)
    return(parsed_content)
 }

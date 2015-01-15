@@ -1,8 +1,10 @@
-update_post_ghost <- function(url,post_body){
+update_post_ghost <- function(id,post_body){
 
-  access_token <- authenticate_ghost()
+  access_token <- get_ghost_token()
 
-  update_ghost <- PUT(url,
+  ghost_url <- paste(construct_url(),"posts/",id,"?include=tags",sep="")
+
+  update_ghost <- PUT(ghost_url,
                    # encode="json",
                    body = toJSON(post_body,auto_unbox=TRUE),
                    verbose(),
