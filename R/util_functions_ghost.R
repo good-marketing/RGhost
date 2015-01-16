@@ -6,9 +6,9 @@ construct_response <- function(ghost_response){
   names(return_response)  <- return_response.names
 
     if(ghost_response$status_code == 200 | ghost_response$status_code == 201){
-      return_response$message    <- httr::content(ghost_response)
+      return_response$message    <- "Everything is ok."
       return_response$status     <- TRUE
-      return_response$content    <- httr::content(ghost_response)
+      return_response$content    <- parse_content(ghost_response)
     }
     else{
       return_response$message    <- "There was a problem. Please see the error message"

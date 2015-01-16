@@ -1,18 +1,8 @@
 update_post_ghost <- function(id,post_body){
 
-  access_token <- get_ghost_token()
-
   ghost_url <- paste(construct_url(),"posts/",id,"?include=tags",sep="")
 
-  update_ghost <- PUT(ghost_url,
-                   # encode="json",
-                   body = toJSON(post_body,auto_unbox=TRUE),
-                   verbose(),
-                   add_headers(
-                     "Content-Type" = "application/json",
-                     "Authorization" = paste('Bearer', access_token) ,
-                     "User-Agent"="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36")
-  )
+  update_ghost <- make_api_call("PUT",ghost_url,post_body)
 
-  return(parse_content(update_ghost))
+  return(construct_response(update_ghost))
 }
