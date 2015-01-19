@@ -4,7 +4,7 @@
 \name{ghost}
 \alias{ghost}
 \title{Base input parameters}
-\format{\preformatted{<environment: 0x7fb00ace8298> 
+\format{\preformatted{<environment: 0x7f82dd64f5b8> 
 }}
 \usage{
 ghost
