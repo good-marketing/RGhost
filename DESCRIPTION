@@ -7,9 +7,10 @@ Author: Bob Rietveld
 Maintainer: Bob Rietveld <bob.rietveld@gmail.com>
 Description: Api Wrapper for Ghost blogging platform
 License: GPL-2
-Depends: 
+Depends:
     R (>= 2.12.0),
     httr (>= 0.4),
-    jsonlite
+    jsonlite,
+    rlist
 Suggests: knitr
 VignetteBuilder: knitr

@@ -4,12 +4,9 @@
 
 get_posts_ghost <- function (){
 
-  access_token <- get_ghost_token()
-
   ghost_url <- paste(construct_url(),"posts?status=all",sep="")
 
   ghost_posts <- make_api_call("GET",ghost_url)
-
 
   response <- construct_response(ghost_posts)
 
