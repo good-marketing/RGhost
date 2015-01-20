@@ -4,7 +4,7 @@
 \alias{authenticate_ghost}
 \title{Authenticate ghost serive}
 \usage{
-authenticate_ghost()
+authenticate_ghost(username, password)
 }
 \arguments{
 \item{username}{Ghost username (format email)}
