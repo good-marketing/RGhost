@@ -18,16 +18,25 @@ set_credentials <- function(username,password,url){
   #Assign return variable to package environment
   ghost$creds <- return_credentials
 
-  #Set variables
-  ghost$return_credentials$time <- Sys.time()
-  ghost$return_credentials$status <- FALSE
-  ghost$return_credentials$username <- username
-  ghost$return_credentials$password <- password
-  ghost$return_credentials$url      <- url
-  ghost$return_credentials$access_token   <-  authenticate_ghost()$access_token
-  ghost$return_credentials$refresh_token <- authenticate_ghost()$refresh_token
+  # Set generic variables
+  ghost$return_credentials$status        <- FALSE
+  ghost$return_credentials$url           <- url
 
-  return (ghost$return_credentials)
+  #Authenticate ghost
+  response_credentials <- authenticate_ghost(username,password)
+
+  #Check status and set variables after authentication
+  if(ghost$return_credentials$status){
+    ghost$return_credentials$time          <- Sys.time()
+    ghost$return_credentials$access_token  <-  response_credentials$access_token
+    ghost$return_credentials$refresh_token <- response_credentials$refresh_token
+    return (ghost$return_credentials)
+  }
+  else{
+    ghost$return_credentials$access_token  <-  ''
+    ghost$return_credentials$refresh_token <- ''
+    return (ghost$return_credentials)
+  }
 
 }
 
@@ -39,15 +48,15 @@ set_credentials <- function(username,password,url){
 #' @param url Ghost Url (using https:// format).
 #' @return Access token required for any request to the url \code{access_token} and \code{y}.
 
-authenticate_ghost <- function(){
+authenticate_ghost <- function(username,password){
 
   ghost_url <- paste(construct_url(),"authentication/token",sep="")
 
   access_ghost <- httr::POST(ghost_url,
                   encode="form",
                   body = list(grant_type = "password",
-                            username =   ghost$return_credentials$username,
-                            password =  ghost$return_credentials$password,
+                            username =   username,
+                            password =  password,
                             client_id = "ghost-admin"),
                   add_headers(
                   "Content-Type" = "application/x-www-form-urlencoded",
@@ -67,6 +76,7 @@ authenticate_ghost <- function(){
   }
   else{
     response <- response$message
+    ghost$return_credentials$status <- FALSE
   }
   return (response)
 
