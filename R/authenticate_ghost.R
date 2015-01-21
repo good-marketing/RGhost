@@ -7,6 +7,7 @@
 
 #Create package environment
 ghost <- new.env(parent = emptyenv())
+ghost$return_credentials$status        <- FALSE
 
 set_credentials <- function(username,password,url){
 
