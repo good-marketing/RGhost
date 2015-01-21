@@ -4,6 +4,7 @@ get_tags <- function(){
 
   get_tags <- make_api_call("GET",ghost_url)
 
+
   response <- list(flat = parse_content(get_tags),
                    hier = content(get_tags))
 

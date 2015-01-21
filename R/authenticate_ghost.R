@@ -40,7 +40,6 @@ set_credentials <- function(username,password,url){
 
 }
 
-
 #' Authenticate ghost serive
 #'
 #' @param username Ghost username (format email)

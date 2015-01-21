@@ -4,8 +4,9 @@ get_users <- function(){
 
   #Make the call
   get_users <- make_api_call("GET",ghost_url)
+  response <- construct_response(get_users)
 
-  return(parse_content(get_users))
+  return(response)
 }
 
 get_current_user <-function(){
@@ -15,8 +16,8 @@ get_current_user <-function(){
 
   #Make the Call
   get_user <- make_api_call("GET",ghost_url)
-
-  return(parse_content(get_user))
+  response <- construct_response(get_user)
+  return(response)
 
 
 }

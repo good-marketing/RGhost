@@ -30,14 +30,11 @@ construct_url <- function() {
 }
 
 construct_post <- function(post_body){
-
   # do error checking is this is a valid object
   body <- list("posts"= list(post_body))
-
 }
 
 parse_content <- function(post_body){
-
    parsed_content <- fromJSON(content(post_body,as="text"),flatten=TRUE)
    return(parsed_content)
 }
