@@ -4,8 +4,7 @@
 
 get_posts_ghost <- function (){
 
-  ghost_url <- paste(construct_url(),"posts?status=all&staticPages=all",sep="")
-
+  ghost_url <- paste(construct_url(),"posts?status=all&staticPages=all&limit=all",sep="")
   ghost_posts <- make_api_call("GET",ghost_url)
 
   response <- construct_response(ghost_posts)
@@ -16,7 +15,6 @@ get_posts_ghost <- function (){
   else{
     response <- response$message
   }
-
   return (response)
 }
 
