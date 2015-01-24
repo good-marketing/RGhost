@@ -1,0 +1,61 @@
+/* Customize fonts */
+body, label, input, button, select {
+  font-family: 'Helvetica Neue', Helvetica;
+  font-weight: 200;
+}
+h1, h2, h3, h4 { font-weight: 400; }
+
+#controls {
+  /* Appearance */
+  background-color: white;
+  padding: 0 20px 20px 20px;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.65;
+  zoom: 0.9;
+  transition: opacity 500ms 1s;
+}
+#controls:hover {
+  /* Fade in while hovering */
+  opacity: 0.95;
+  transition-delay: 0;
+}
+
+#rmd {
+  position: absolute;
+  right: 39%;
+  top: 62px;
+  left: 16%;
+  bottom: 0;
+  padding-right: 10px;
+   z-index:1;
+}
+
+#knitDoc {
+  position: absolute;
+  left: 61.5%;
+  top: 62px;
+  right: 1%;
+  bottom: 0;
+  padding-left: 10px;
+  overflow-y: scroll;
+  border:1px solid #ccc;
+  margin-bottom:9px;
+  border-radius: 5px;
+   z-index:1;
+}
+
+#alert_anchor{
+left: 61.5%;
+ z-index:2;
+}
+.out_of_sight {
+  position: absolute;
+  left: -99em;
+}
+
+#my_open, #my_save, #my_render,#my_ghost,#my_gingko,#my_ghostu,#my_ghostd,#my_ghostg{
+  position: absolute;
+  left: -99em;
+}
+

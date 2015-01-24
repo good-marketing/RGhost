@@ -1,4 +1,4 @@
----
+  ---
 title: "Vignette Title"
 author: "Vignette Author"
 date: "`r Sys.Date()`"
