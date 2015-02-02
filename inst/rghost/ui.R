@@ -26,9 +26,9 @@ shinybootstrap2::withBootstrap2(
                                              c("Render file [Ctrl+r]", "render"))),
                bsNavDropDown2(inputId = "dd2", label = "Ghost",
                               choices = list(c("Get Posts", "ghostg"),
-                                             c("Post to  Ghost  [Ctrl+g]", "ghost"),
-                                             c("Update Post to  Ghost  [Ctrl+g]", "ghostu"),
-                                             c("Delete Post from  Ghost  [Ctrl+g]", "ghostd")
+                                             c("Post to  Ghost", "ghost"),
+                                             c("Update Post to  Ghost", "ghostu"),
+                                             c("Delete Post from  Ghost", "ghostd")
                               ))
              )
              ,rightItems = list (textOutput("test"))),

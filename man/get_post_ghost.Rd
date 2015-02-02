@@ -2,17 +2,20 @@
 % Please edit documentation in R/get_posts_ghost.R
 \name{get_post_ghost}
 \alias{get_post_ghost}
-\title{Get single post}
+\title{get_post_ghost}
 \usage{
 get_post_ghost(id)
 }
 \arguments{
-\item{id}{postid to fetch}
+\item{Post}{id from an existing post object.}
 }
 \value{
-Returns latest 1 post objects.
+Response object. See the \code{\link{construct_response}} function. Returns a post object. Tags associated with the current blogpost are included by default.
 }
 \description{
-Get single post
+Gets a signle post.
+}
+\examples{
+get_post_ghost(1)
 }
 

@@ -3,8 +3,8 @@
 \docType{data}
 \name{ghost}
 \alias{ghost}
-\title{Base input parameters}
-\format{\preformatted{<environment: 0x7fad6e612aa8> 
+\title{set_credentials}
+\format{\preformatted{<environment: 0x7fe593eb7eb0> 
 }}
 \usage{
 ghost
@@ -20,7 +20,10 @@ ghost
 Access token required for any request to the url \code{access_token} and \code{y}.
 }
 \description{
-Base input parameters
+set initial variables to be used in the package and authenticates the user to obtain an access token
+}
+\examples{
+set_credentials("foo@barcom","foopassword","http://foo.com")
 }
 \keyword{datasets}
 

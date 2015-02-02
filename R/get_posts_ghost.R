@@ -1,7 +1,9 @@
-#' Get 15 Ghosts blogposts
-#' @param status ghost posts either have status draft, published. The 'all' parameter gets both published and draft
-#' @return Returns latest 15 post objects in a flattened list containing post objects.
-
+#' get_posts_ghost
+#' @description
+#' Get all existing posts. Posts, static pages, draft and published posts are currently returned. Future implementation will allow to pass parameters to this function to select the returned posts.
+#' @return Response object. See the \code{\link{construct_response}} function. An list of post objects is returned.
+#' @examples
+#' get_posts_ghost()
 get_posts_ghost <- function (){
 
   ghost_url <- paste(construct_url(),"posts?status=all&staticPages=all&limit=all",sep="")
@@ -18,11 +20,13 @@ get_posts_ghost <- function (){
   return (response)
 }
 
-#' Get single post
-#' @param id postid to fetch
-#' @return Returns latest 1 post objects.
-
-
+#' get_post_ghost
+#' @description
+#' Gets a signle post.
+#' @param Post id from an existing post object.
+#' @return Response object. See the \code{\link{construct_response}} function. Returns a post object. Tags associated with the current blogpost are included by default.
+#' @examples
+#' get_post_ghost(1)
 get_post_ghost <- function(id){
 
   #Create Url

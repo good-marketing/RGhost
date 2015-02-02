@@ -1,13 +1,20 @@
-#' Base input parameters
-#'
+#' set_credentials
+#' @description
+#' set initial variables to be used in the package and authenticates the user to obtain an access token
 #' @param username Ghost username (format email)
 #' @param password Ghost password.
 #' @param url Ghost Url (using https:// format).
 #' @return Access token required for any request to the url \code{access_token} and \code{y}.
+#'
+#' @examples
+#' set_credentials("foo@@barcom","foopassword","http://foo.com")
+
+
 
 #Create package environment
 ghost <- new.env(parent = emptyenv())
 ghost$return_credentials$status        <- FALSE
+
 
 set_credentials <- function(username,password,url){
 
@@ -41,12 +48,15 @@ set_credentials <- function(username,password,url){
 
 }
 
-#' Authenticate ghost serive
-#'
+#' authenticate_ghost
+#' @description
+#' Make call to authenticate current user.
 #' @param username Ghost username (format email)
 #' @param password Ghost password.
-#' @param url Ghost Url (using https:// format).
-#' @return Access token required for any request to the url \code{access_token} and \code{y}.
+#' @return http request content is returned. If an authentication is unsuccesful the error message is returned.
+#'
+#' @examples
+#' authenticate_ghost("foo@@barcom","foopassword")
 
 authenticate_ghost <- function(username,password){
 
@@ -83,6 +93,14 @@ authenticate_ghost <- function(username,password){
 
 }
 
+#' refresh_authenticate_ghost
+#' @description
+#' Gets a new access token if the token is expired. Ghost access tokens expire after one hour. If authentication is succesful an refresh token is returned in the authetication call.
+#' @param refresh token.
+#' @return New access token which is valid for the next hour.
+#'
+#' @examples
+#' refresh_authenticate_ghost("refresh_token")
 refresh_authenticate_ghost <- function(refresh_token){
 
   ghost_url <- paste(construct_url(),"authentication/token",sep="")
@@ -116,6 +134,12 @@ refresh_authenticate_ghost <- function(refresh_token){
 
 }
 
+#' get_ghost_token
+#' @description
+#' Checks if the current access token is valid and return the access_token. If the token has expired a new token is requested by calling the refresh_authenticate_ghost function.
+#' @return  Valid access token.
+#' @examples
+#' get_ghost_token()
 
 get_ghost_token <- function()
 {

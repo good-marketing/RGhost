@@ -2,7 +2,7 @@
 % Please edit documentation in R/authenticate_ghost.R
 \name{authenticate_ghost}
 \alias{authenticate_ghost}
-\title{Authenticate ghost serive}
+\title{authenticate_ghost}
 \usage{
 authenticate_ghost(username, password)
 }
@@ -10,13 +10,14 @@ authenticate_ghost(username, password)
 \item{username}{Ghost username (format email)}
 
 \item{password}{Ghost password.}
-
-\item{url}{Ghost Url (using https:// format).}
 }
 \value{
-Access token required for any request to the url \code{access_token} and \code{y}.
+http request content is returned. If an authentication is unsuccesful the error message is returned.
 }
 \description{
-Authenticate ghost serive
+Make call to authenticate current user.
+}
+\examples{
+authenticate_ghost("foo@barcom","foopassword")
 }
 

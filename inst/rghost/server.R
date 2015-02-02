@@ -113,7 +113,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
         status   = Publish,
         image    = Image,
         featured = Featured,
-        page     = "0",
+        page     = Pages,
         language = "en_US",
         meta_title  = "",
         meta_description  = "",
@@ -189,7 +189,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
   ### Get tags
   observe({
-    if(!is.null(input$Posts)){
+    if(ghost$return_credentials$status){
       isolate({
         output$Tags <- renderUI({
            ghost$get_tag_list <- get_tags() # Get posts
@@ -202,6 +202,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
       })
     }
   })
+
 
   ### Get users
   observe({
@@ -219,7 +220,6 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
   ### Select Specific Post
   observe({
    if(!is.null(input$Posts))
-
     {isolate
       ({ id <- input$Posts #get the selected post id
          Post <- get_post_ghost(id) # get the post object

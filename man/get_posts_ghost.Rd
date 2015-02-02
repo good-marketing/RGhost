@@ -2,17 +2,17 @@
 % Please edit documentation in R/get_posts_ghost.R
 \name{get_posts_ghost}
 \alias{get_posts_ghost}
-\title{Get 15 Ghosts blogposts}
+\title{get_posts_ghost}
 \usage{
 get_posts_ghost()
 }
-\arguments{
-\item{status}{ghost posts either have status draft, published. The 'all' parameter gets both published and draft}
-}
 \value{
-Returns latest 15 post objects in a flattened list containing post objects.
+Response object. See the \code{\link{construct_response}} function. An list of post objects is returned.
 }
 \description{
-Get 15 Ghosts blogposts
+Get all existing posts. Posts, static pages, draft and published posts are currently returned. Future implementation will allow to pass parameters to this function to select the returned posts.
+}
+\examples{
+get_posts_ghost()
 }
 

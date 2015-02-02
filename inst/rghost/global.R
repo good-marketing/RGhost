@@ -9,7 +9,6 @@ library(rmarkdown)
 library(httr)
 library(rCharts)
 library(jsonlite)
-
 library(tools)
 library(rlist)
 library(knitr)

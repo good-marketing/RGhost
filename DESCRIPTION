@@ -1,14 +1,13 @@
 Package: RGhost
 Type: Package
 Title: R wrapper for Ghost blogging api.
-Version: 0.1
+Version: 0.0.1
 Date: 2015-01-11
 Author: Bob Rietveld
 Maintainer: Bob Rietveld <bob.rietveld@gmail.com>
-Description: Api Wrapper for Ghost blogging platform
+Description: Api Wrapper for Ghost blogging platform. Create, update and delete posts from R. The purpose of the package help R users easily post their content to Ghost. By using R Markdown, an simple workflow can be created to mix content and R code which can be posted to Ghost. An shiny application is included in the package implementing the functions from RGhost.The application is based on editR from Simon Garnier. editR is a basic Rmarkdown editor with instant previewing of your document. RGhost extends this shiny application by allowing the use to login and post the document directly to Ghost. RGhost thus creates an easy way to write and post content from Shiny or RStudio to a Ghost.
 License: GPL-2
 Depends:
-    R (>= 2.12.0),
     httr (>= 0.4),
     jsonlite,
     rlist,
