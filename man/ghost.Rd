@@ -4,7 +4,7 @@
 \name{ghost}
 \alias{ghost}
 \title{set_credentials}
-\format{\preformatted{<environment: 0x7fe593eb7eb0> 
+\format{\preformatted{<environment: 0x7f9f9c1286b0> 
 }}
 \usage{
 ghost

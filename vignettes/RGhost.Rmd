@@ -1,7 +1,6 @@
 # RGhost: R Wrapper for Ghost api
 
 
-
 [Ghost](http://ghost.org)  is a simple, powerful publishing platform that allows you to share your stories with the world. Ghost is a kickstarter funded project which is growing rapidly. The source from Ghost is available to run on your own server, different hosted alternatives exists as well. 
 
 **Purpose of RGhost**
