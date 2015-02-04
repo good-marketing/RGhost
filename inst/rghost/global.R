@@ -13,7 +13,6 @@ library(tools)
 library(rlist)
 library(knitr)
 opts_knit$set(upload.fun = imgur_upload, base.url = NULL)
-opts_chunk$set(comment = NA, results = "asis", comment = NA, tidy = F)
 #set img upload to imgur
 library(ggplot2)
 
@@ -40,6 +39,7 @@ bsNavDropDown2 <- function (inputId, label, choices, ids, selected = "") {
                  label, tags$b(class = "caret")), tags$ul(class = "dropdown-menu", choices))
 }
 
+#Preview function for stop evaluating
 preview <- function(rmd) {
   if (grepl("---\n(.*?)\n---", rmd)) {
     rmd <-  sub("---\n(.*?)\n---", "", rmd)
@@ -49,4 +49,6 @@ preview <- function(rmd) {
   paste0("`r opts_chunk$set(cache = TRUE, autodep = TRUE)` \n\n", rmd, "\n\n")
 }
 
-
+#Define reactive value for status login
+ghost_login <- reactiveValues()
+ghost_login$status <- FALSE

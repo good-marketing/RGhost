@@ -1,20 +1,22 @@
-RGhost: R Wrapper for Ghost api
-===============================
+Ghost
+=====
 
 [Ghost](http://ghost.org) is a simple, powerful publishing platform that allows you to share your stories with the world. Ghost is a kickstarter funded project which is growing rapidly. The source from Ghost is available to run on your own server, different hosted alternatives exists as well.
 
-**Purpose of RGhost**
+Purpose of RGhost
+-----------------
 
-While Ghost is great at writing and publishing content, there is /was no easy way to integrate code, examples and grpahs from R into blogposts. The RGhost package and its shiny implementation aims to help R users create an easy workflow from idea, to analysis to
+While Ghost is great at writing and publishing content, there is /was no easy way to integrate code, examples and grpahs from R into blogposts. The RGhost package and its shiny implementation aims to help R users create an easy workflow from idea, to analysis to publising content.
 
-**Ghost API: UNDER DEVELOPMENT**
+Ghost API: UNDER DEVELOPMENT
+----------------------------
 
-Ghost is under heavy development and the team is pushing out new features an a rapid pace. This is also true for the Ghost api. As of now there is no official release of the api. The documentation is scare but can be found on the forums and here. I'll make a best effort to keep the package up to date with the developements as they are rolled out.
+Ghost is under heavy development and the team is pushing out new features an a rapid pace. This is also true for the Ghost api. As of now there is no official release of the api. The documentation is scarce but can be found on the forums and here. I'll make a best effort to keep the package up to date with the developements as they are rolled out.
 
 The current implementation is based on Ghost version 0.5.7.
 
-Ghost API
-=========
+RGhost code
+===========
 
 Installation
 ------------
@@ -28,31 +30,29 @@ RGhost has only been tested with a self-hosted version. Technically it should wo
 Usage
 -----
 
-Please see the help documentation for documentation of the functions.
-
-The current implementation supports the following functions
+Please see the help documentation in the package itself.
 
 ### Authentication
 
--   Authentication (based on username and password. There is no official release yet for Oauth for Ghost).Once the Ghost API officially will be released Oauth will be implemented.See [here](https://github.com/TryGhost/Ghost/wiki/How-does-oAuth-work-with-Ghost%3F) for the initial details.
+-   Authentication is based on username and password. There is no official release yet for Oauth for Ghost).Once the Ghost API officially will be released Oauth will be implemented.See [here](https://github.com/TryGhost/Ghost/wiki/How-does-oAuth-work-with-Ghost%3F) for the initial details.
+-   Note: Ghost locks down for one hour if to many false authentication request have been made. If you control your own ghost installation you can restart the instance and authenticate again.
 
-Supported Operations
---------------------
-
-### GET OPERATIONS
+### Get operations
 
 -   Get all posts (published and draft)
 -   Get all users / Get current user
 -   Get all tags
 
-### POST OPERATIONS
+### (Blog)post operations
 
 -   Create new posts
 -   Update existsing post
 -   Delete a post
 
-SHINY Application
-=================
+<hr/>
+
+RGhost: Shiny Application
+=========================
 
 Introduction
 ------------
@@ -61,8 +61,8 @@ The RGhost shiny application is a web application which provides an easy way to 
 
 editR is a basic Rmarkdown editor with instant previewing of your document. It allows you to create and edit Rmarkdown documents while instantly previewing the result of your writing and coding. It also allows you to render your Rmarkdown file in any format permitted by the rmarkdown R package
 
-Installation RGhost
--------------------
+Installation RGhost shiny application
+-------------------------------------
 
 In order to run the RGhost shiny application the following packages are required:
 
@@ -179,7 +179,7 @@ h1$chart(type = "spline")
 h1$series(data = c(1, 3, 2, 4, 5, 4, 6, 2, 3, 5, NA), dashStyle = "longdash")
 h1$series(data = c(NA, 4, 1, 3, 4, 2, 9, 1, 2, 3, 4), dashStyle = "shortdot")
 h1$legend(symbolWidth = 80)
-h1$set(width = 600)
+h1$set(width = 800)
 h1$show('iframesrc', cdn = TRUE)
 ```
 
@@ -198,7 +198,7 @@ h1$show('iframesrc', cdn = TRUE)
       display: block;
       margin-left: auto; 
       margin-right: auto;
-      width: 600px;
+      width: 800px;
       height: 400px;
     }  
     &lt;/style&gt;
@@ -206,13 +206,13 @@ h1$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart17c1212fc2ac&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart23f867fe5d0b&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
     &lt;script type=&#039;text/javascript&#039;&gt;
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- &quot;dom&quot;: &quot;chart17c1212fc2ac&quot;,
-&quot;width&quot;:            600,
+ &quot;dom&quot;: &quot;chart23f867fe5d0b&quot;,
+&quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;credits&quot;: {
  &quot;href&quot;: null,
@@ -231,7 +231,7 @@ h1$show('iframesrc', cdn = TRUE)
 },
 &quot;chart&quot;: {
  &quot;type&quot;: &quot;spline&quot;,
-&quot;renderTo&quot;: &quot;chart17c1212fc2ac&quot; 
+&quot;renderTo&quot;: &quot;chart23f867fe5d0b&quot; 
 },
 &quot;series&quot;: [
  {
@@ -270,7 +270,7 @@ null
 &quot;legend&quot;: {
  &quot;symbolWidth&quot;:             80 
 },
-&quot;id&quot;: &quot;chart17c1212fc2ac&quot; 
+&quot;id&quot;: &quot;chart23f867fe5d0b&quot; 
 });
         });
     })(jQuery);
@@ -278,24 +278,18 @@ null
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart17c1212fc2ac'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart23f867fe5d0b'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 In a similar fashion you can create interactive maps using the rMaps package
 
 ``` {.r}
 library(rMaps)
-#> 
-#> Attaching package: 'rMaps'
-#> 
-#> The following objects are masked from 'package:rCharts':
-#> 
-#>     Datamaps, Leaflet, makeChoroData, processChoroData, rqMap
 map <- Leaflet$new()
-map$setView(c(51.505, -0.09), zoom = 13)
+map$setView(c(52.36, 4.90), zoom = 5)
 map$tileLayer(provider = 'Stamen.Watercolor')
-map$marker(c(51.5, -0.09), bindPopup = 'Hi. I am a popup')
-map$set(width = 600)
+map$marker(c(52.36, 4.90), bindPopup = 'Hi. Welcome to Amsterdam')
+map$set(width = 800)
 map$show('iframesrc', cdn = TRUE)
 ```
 
@@ -314,7 +308,7 @@ map$show('iframesrc', cdn = TRUE)
       display: block;
       margin-left: auto; 
       margin-right: auto;
-      width: 600px;
+      width: 800px;
       height: 400px;
     }  
     &lt;/style&gt;
@@ -322,20 +316,20 @@ map$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart17c14695bb39&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart23f86c8eb283&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
     &lt;script&gt;
   var spec = {
- &quot;dom&quot;: &quot;chart17c14695bb39&quot;,
-&quot;width&quot;:            600,
+ &quot;dom&quot;: &quot;chart23f86c8eb283&quot;,
+&quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;urlTemplate&quot;: &quot;http://{s}.tile.osm.org/{z}/{x}/{y}.png&quot;,
 &quot;layerOpts&quot;: {
  &quot;attribution&quot;: &quot;Map data&lt;a href=\&quot;http://openstreetmap.org\&quot;&gt;OpenStreetMap&lt;/a&gt;\n         contributors, Imagery&lt;a href=\&quot;http://mapbox.com\&quot;&gt;MapBox&lt;/a&gt;&quot; 
 },
-&quot;center&quot;: [         51.505,          -0.09 ],
-&quot;zoom&quot;:             13,
+&quot;center&quot;: [          52.36,            4.9 ],
+&quot;zoom&quot;:              5,
 &quot;provider&quot;: &quot;Stamen.Watercolor&quot;,
-&quot;id&quot;: &quot;chart17c14695bb39&quot; 
+&quot;id&quot;: &quot;chart23f86c8eb283&quot; 
 }
 
   var map = L.map(spec.dom, spec.mapOpts)
@@ -350,11 +344,11 @@ map$show('iframesrc', cdn = TRUE)
      
     L
   .marker([
-   51.5,
- -0.09 
+  52.36,
+   4.9 
 ])
   .addTo( map )
-  .bindPopup(&quot;Hi. I am a popup&quot;)
+  .bindPopup(&quot;Hi. Welcome to Amsterdam&quot;)
     
     
     
@@ -377,12 +371,8 @@ map$show('iframesrc', cdn = TRUE)
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart17c14695bb39'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart23f86c8eb283'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
-
-
-
-
 
 Update a post
 -------------

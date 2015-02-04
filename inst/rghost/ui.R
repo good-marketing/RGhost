@@ -40,12 +40,11 @@ shinybootstrap2::withBootstrap2(
 
        bsCollapse(open = "col2", id = "collapse",
           bsCollapsePanel("Login", id="col1",
-                  actionButton("connect", "Connect", icon("download")),actionButton("save", "Save", icon("save")),
                                    textInput("username", "Username"),
                                    textInput("password", "Password"),
                                    textInput("ghost_base_url", "Url"),
-                                   div("Value stored currently:"),
-                                   textOutput("curText")),
+                                   actionButton("connect", "Connect", icon("download"))
+                                   ),
 
           bsCollapsePanel("Post",id="col2",
                   uiOutput("Posts"),
@@ -53,10 +52,11 @@ shinybootstrap2::withBootstrap2(
                   selectInput('Page', 'Page', c("Not a page"="0","Make a Page"="1")),
                   selectInput('Publish', 'Publish', c("Draft"="draft","Published"="published")),
                   selectInput('Featured', 'Featured', c("Normal"=0,"Feature"=1)),
-                  textInput('Slug', label ="Url", value = ""),
-                  textInput('Image', label ="Image", value = ""),
+                  uiOutput("Users"),
                   uiOutput("Tags"),
-                  uiOutput("Users")
+                  textInput('Slug', label ="Url", value = ""),
+                  textInput('Image', label ="Image", value = "")
+
          ))
       )
       ,

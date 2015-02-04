@@ -60,10 +60,6 @@ construct_url <- function() {
 #'   \item author: The author id of the author of the post.(integer
 #'   \item tags: list of tags objects (see ghost documentation for a description of the tag object. )
 #' }
-#'
-#'
-#'
-#'
 #' @return Response object. See the \code{\link{construct_response}} function.
 #' @examples
 #' post_body <- c(
@@ -77,8 +73,8 @@ construct_url <- function() {
 #' author   = Author,
 #' tags     = list(TagsList)
 #' )
-#'
 #' post_body <- construct_post(post_body)
+
 construct_post <- function(post_body){
   # do error checking is this is a valid object
   body <- list("posts"= list(post_body))

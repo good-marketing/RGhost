@@ -1,70 +1,92 @@
 shinybootstrap2::withBootstrap2(function(input, output, session) {
 
- observe({
 
+  #Passive Login Check if the session still is in effect
+  observe({
+    if(ghost$return_credentials$status){
+
+      #Send Message
+      send_message("You are still logged in.","success")
+
+      #Set reactive value
+      ghost_login$status <- TRUE
+    }
+    else
+    {
+      #Open login panel
+      updateCollapse(session, id = "collapse", multiple = FALSE, open = "col1", close = NULL)
+
+      #Send message
+      send_message("Check your credentials and login.","danger")
+    }
+
+    # Display Stored information.
+    updateTextInput(session, "username", value=isolate(input$store)$username)
+    updateTextInput(session, "password", value=isolate(input$store)$password)
+    updateTextInput(session, "ghost_base_url", value=isolate(input$store)$ghost_base_url)
+
+  })
+
+#Check if the login credentials are not empty and store them
+ login_validate <- function(){
+
+   # Check is input is provided
+   if(input$username == ""){
+     send_message("Please fill out the necessary info.","info")
+                            return(FALSE)
+                           }
+  else{
+   # Save credentials to store
+   updateStore(session, "username", isolate(input$username))
+   updateStore(session, "password", isolate(input$password))
+   updateStore(session, "ghost_base_url", isolate(input$ghost_base_url))
+   return(TRUE)
+  }
+ }
+
+ #Active Login
+ observe({
    if (input$connect > 0){
+
+     #Check if the login credentials are not empty and store them
+     check_login <- login_validate()
+
+     if(check_login){
      ## Call init variables
-     set_credentials( input$store$username,
+      set_credentials(input$store$username,
                       input$store$password,
                       input$store$ghost_base_url)
 
-     # Save correct credentials
-     if (ghost$return_credentials$status){
+       # Save correct credentials
+       if (ghost$return_credentials$status){
 
-       # Save correct credentials to store
-       updateStore(session, "username", isolate(input$username))
-       updateStore(session, "password", isolate(input$password))
-       updateStore(session, "ghost_base_url", isolate(input$ghost_base_url))
+         #Send message
+         send_message("Authentication success and settings stored.","success")
 
-       #Send message
-       send_message("Authentication success and settings stored.","success")
+         #Set reactive value
+         ghost_login$status <- TRUE
+
+       }
+       else{
+        #Send message
+         send_message("Authentication failed, please review your credentials.","danger")
+
+         #Set reactive value
+         ghost_login$status <- FALSE
+       }
 
      }
    }
-
-   #check if the session still is in effect
-   if(ghost$return_credentials$status){
-
-    # Display Stored information.
-     updateTextInput(session, "username", value=isolate(input$store)$username)
-     updateTextInput(session, "password", value=isolate(input$store)$password)
-     updateTextInput(session, "ghost_base_url", value=isolate(input$store)$ghost_base_url)
-
-     #Send Message
-     send_message("You are logged in.","success")
-   }
-   else
-   {
-    #Open login panel
-    updateCollapse(session, id = "collapse", multiple = FALSE, open = "col1", close = NULL)
-
-    #Send message
-    send_message("Check your credentials and login.","danger")
-   }
-
-
  })
 
- #Save new credentials to store
- observe({
-   if (input$save > 0){
-     updateStore(session, "username", isolate(input$username))
-     updateStore(session, "password", isolate(input$password))
-     updateStore(session, "ghost_base_url", isolate(input$ghost_base_url))
-     return()
-   }
- })
+
 
  output$test <- renderText({
-  input$Tags
+
+   if(ghost_login$status){paste("Logged in as ",input$store$username,sep="")}
+   else("Not logged in.")
 
  })
-
- #Show stored values.
-  output$curText <- renderText({
-    paste(input$store$username," <br/>",input$store$password," <br/>",input$store$ghost_base_url)})
-
-
 
   ### Init logic###
   # md_file <- readChar(md_name, file.info(md_name)$size)
@@ -83,7 +105,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
                 append = FALSE
     )
 
-    Sys.sleep(4)
+    Sys.sleep(3)
 
     closeAlert(session,"ghost_message")
 
@@ -172,24 +194,25 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
     }
   })
 
-  ### Get Posts
-  observe({
-    isolate({
-      output$Posts <- renderUI({
-        if (input$my_ghostg > 0 )
-          {
-            PostList <- get_posts_ghost() # Get posts
-            post_list <- setNames(list.map(PostList$posts,id),list.mapv(PostList$posts,slug))
-            selectizeInput("Posts","Select an exiting Post",choices=post_list,selected=FALSE)
+ ### Get Posts
+ observe({
+   isolate({
+     output$Posts <- renderUI({
+       if (input$my_ghostg > 0 )
+       {
+         PostList <- get_posts_ghost() # Get posts
+         post_list <- setNames(list.map(PostList$posts,id),list.mapv(PostList$posts,slug))
+         selectizeInput("Posts","Select an exiting Post",choices=post_list,selected=FALSE)
 
-          }
-      })
-    })
-  })
+       }
+     })
+   })
+ })
+
 
   ### Get tags
   observe({
-    if(ghost$return_credentials$status){
+    if(ghost_login$status){
       isolate({
         output$Tags <- renderUI({
            ghost$get_tag_list <- get_tags() # Get posts
@@ -206,7 +229,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
   ### Get users
   observe({
-    if(ghost$return_credentials$status){
+    if(ghost_login$status){
       isolate({
         output$Users <- renderUI({
           get_user_list <- get_users()$content # Get posts
@@ -223,7 +246,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
     {isolate
       ({ id <- input$Posts #get the selected post id
          Post <- get_post_ghost(id) # get the post object
-         Tags <-
+
         # Update post properties
         updateTextInput(session, "PostTitle", value = Post$title)
         updateAceEditor(session, "rmd", value = Post$markdown)

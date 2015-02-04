@@ -3,6 +3,9 @@ body, label, input, button, select {
   font-family: 'Helvetica Neue', Helvetica;
   font-weight: 200;
 }
+
+body{margin-top:10px;}
+
 h1, h2, h3, h4 { font-weight: 400; }
 
 #controls {
@@ -24,7 +27,7 @@ h1, h2, h3, h4 { font-weight: 400; }
 #rmd {
   position: absolute;
   right: 39%;
-  top: 62px;
+  top: 72px;
   left: 16%;
   bottom: 0;
   padding-right: 10px;
@@ -34,7 +37,7 @@ h1, h2, h3, h4 { font-weight: 400; }
 #knitDoc {
   position: absolute;
   left: 61.5%;
-  top: 62px;
+  top: 72px;
   right: 1%;
   bottom: 0;
   padding-left: 10px;
@@ -57,5 +60,9 @@ left: 61.5%;
 #my_open, #my_save, #my_render,#my_ghost,#my_gingko,#my_ghostu,#my_ghostd,#my_ghostg{
   position: absolute;
   left: -99em;
+}
+
+#test{
+  margin-top:10px;
 }
 

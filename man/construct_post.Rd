@@ -37,7 +37,6 @@ page     = "0",
 author   = Author,
 tags     = list(TagsList)
 )
-
 post_body <- construct_post(post_body)
 }
 
