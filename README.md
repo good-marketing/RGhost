@@ -54,6 +54,8 @@ Please see the help documentation in the package itself.
 RGhost: Shiny Application
 =========================
 
+![](https://www.filepicker.io/api/file/JO0Uska3Qf2ntpxyr6Az)
+
 Introduction
 ------------
 
@@ -206,12 +208,12 @@ h1$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart23f867fe5d0b&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart245f2ea9f4bc&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
     &lt;script type=&#039;text/javascript&#039;&gt;
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- &quot;dom&quot;: &quot;chart23f867fe5d0b&quot;,
+ &quot;dom&quot;: &quot;chart245f2ea9f4bc&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;credits&quot;: {
@@ -231,7 +233,7 @@ h1$show('iframesrc', cdn = TRUE)
 },
 &quot;chart&quot;: {
  &quot;type&quot;: &quot;spline&quot;,
-&quot;renderTo&quot;: &quot;chart23f867fe5d0b&quot; 
+&quot;renderTo&quot;: &quot;chart245f2ea9f4bc&quot; 
 },
 &quot;series&quot;: [
  {
@@ -270,7 +272,7 @@ null
 &quot;legend&quot;: {
  &quot;symbolWidth&quot;:             80 
 },
-&quot;id&quot;: &quot;chart23f867fe5d0b&quot; 
+&quot;id&quot;: &quot;chart245f2ea9f4bc&quot; 
 });
         });
     })(jQuery);
@@ -278,7 +280,7 @@ null
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart23f867fe5d0b'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart245f2ea9f4bc'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 In a similar fashion you can create interactive maps using the rMaps package
@@ -316,10 +318,10 @@ map$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart23f86c8eb283&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart245f18027a93&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
     &lt;script&gt;
   var spec = {
- &quot;dom&quot;: &quot;chart23f86c8eb283&quot;,
+ &quot;dom&quot;: &quot;chart245f18027a93&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;urlTemplate&quot;: &quot;http://{s}.tile.osm.org/{z}/{x}/{y}.png&quot;,
@@ -329,7 +331,7 @@ map$show('iframesrc', cdn = TRUE)
 &quot;center&quot;: [          52.36,            4.9 ],
 &quot;zoom&quot;:              5,
 &quot;provider&quot;: &quot;Stamen.Watercolor&quot;,
-&quot;id&quot;: &quot;chart23f86c8eb283&quot; 
+&quot;id&quot;: &quot;chart245f18027a93&quot; 
 }
 
   var map = L.map(spec.dom, spec.mapOpts)
@@ -371,7 +373,7 @@ map$show('iframesrc', cdn = TRUE)
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart23f86c8eb283'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart245f18027a93'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 Update a post
