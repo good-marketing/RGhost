@@ -18,11 +18,7 @@ The current implementation is based on Ghost version 0.5.7.
 RGhost code
 ===========
 
-The current package is an clear alpha, the following features need to be implemented improved:
-
-[] Error handling 
-[] Implement adding, updating tags for new and existing posts 
-[] Implement uploading pictures with posts
+The current package is an clear alpha, the following features need to be implemented improved: - [ ] Update secuirity of storing passwords - [ ] Error handling - [ ] Implement adding, updating tags for new and existing posts - [ ] Implement uploading pictures with posts
 
 Installation
 ------------
@@ -72,7 +68,7 @@ editR is a basic Rmarkdown editor with instant previewing of your document. It a
 Installation RGhost shiny application
 -------------------------------------
 
-In order to run the RGhost shiny application the following packages are required:
+Before you install the applicatin you can give it a try on [shinyapps](https://good-marketing.shinyapps.io/rghost/). In order to run the RGhost shiny application the following packages are required:
 
 ### Required packages
 
@@ -119,6 +115,8 @@ Working with files
 
 Thanks to editR you can work with files (currently there is now way to create a new file from the application.) You can open and save existing Rmd files. To view your file in HTML format hit the render button. A new window will open showing you a html version of your content.
 
+NOTE: On shinyapps.io the home directory is a relative directory (posts), which is publicly available.
+
 ![](https://www.filepicker.io/api/file/vzuD0kecQkqER7AZAyLS)
 
 Post a new post
@@ -137,6 +135,10 @@ Most field are self explanatory, but a number of notes
 -   **Tags**: you can select multiple tags.
 
 -   **Feature** : depending on the Ghost theme applied the feature property is used to provide a post a prominent position on the homepage.
+
+**NOTE**
+
+The application stores an Rmd file the first time you publish a post in the 'posts' directory. As the RMarkdown is parsed by knitr and then Ghost the original r code you write will be converted. Storing an Rmd file allows for retreival of the R code.
 
 ### Markdown Content
 
@@ -214,12 +216,12 @@ h1$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart504c7cac71b0&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart55163300266a&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
     &lt;script type=&#039;text/javascript&#039;&gt;
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- &quot;dom&quot;: &quot;chart504c7cac71b0&quot;,
+ &quot;dom&quot;: &quot;chart55163300266a&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;credits&quot;: {
@@ -239,7 +241,7 @@ h1$show('iframesrc', cdn = TRUE)
 },
 &quot;chart&quot;: {
  &quot;type&quot;: &quot;spline&quot;,
-&quot;renderTo&quot;: &quot;chart504c7cac71b0&quot; 
+&quot;renderTo&quot;: &quot;chart55163300266a&quot; 
 },
 &quot;series&quot;: [
  {
@@ -278,7 +280,7 @@ null
 &quot;legend&quot;: {
  &quot;symbolWidth&quot;:             80 
 },
-&quot;id&quot;: &quot;chart504c7cac71b0&quot; 
+&quot;id&quot;: &quot;chart55163300266a&quot; 
 });
         });
     })(jQuery);
@@ -286,7 +288,7 @@ null
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart504c7cac71b0'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart55163300266a'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 In a similar fashion you can create interactive maps using the rMaps package
@@ -324,10 +326,10 @@ map$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart504c1d5c19c2&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart55164eda134e&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
     &lt;script&gt;
   var spec = {
- &quot;dom&quot;: &quot;chart504c1d5c19c2&quot;,
+ &quot;dom&quot;: &quot;chart55164eda134e&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;urlTemplate&quot;: &quot;http://{s}.tile.osm.org/{z}/{x}/{y}.png&quot;,
@@ -337,7 +339,7 @@ map$show('iframesrc', cdn = TRUE)
 &quot;center&quot;: [          52.36,            4.9 ],
 &quot;zoom&quot;:              5,
 &quot;provider&quot;: &quot;Stamen.Watercolor&quot;,
-&quot;id&quot;: &quot;chart504c1d5c19c2&quot; 
+&quot;id&quot;: &quot;chart55164eda134e&quot; 
 }
 
   var map = L.map(spec.dom, spec.mapOpts)
@@ -379,8 +381,138 @@ map$show('iframesrc', cdn = TRUE)
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart504c1d5c19c2'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart55164eda134e'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
+
+
+### Tables
+
+Currently Ghost does not support markdown tables. There are probably more than one ways around this, my current most convenient solution is xtable.
+
+If you produce a table in a R chunck you can use the following to publish this to Ghost
+
+``` {.r}
+
+a <- head(cars) #Your results
+
+library(xtable) # Load xtable library
+tab <- xtable(a) #xtable your results
+
+# Styling table using css
+print(tab, type="html",html.table.attributes='class:mytable') # print them to html. Ghost accepts standard html in markdown.
+```
+
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 13:47:07 2015 -->
+<table class:mytable>
+<tr> <th>  </th> <th> 
+speed
+</th> <th> 
+dist
+</th>  </tr>
+  <tr> <td align="right"> 
+1
+</td> <td align="right"> 
+4.00
+</td> <td align="right"> 
+2.00
+</td> </tr>
+  <tr> <td align="right"> 
+2
+</td> <td align="right"> 
+4.00
+</td> <td align="right"> 
+10.00
+</td> </tr>
+  <tr> <td align="right"> 
+3
+</td> <td align="right"> 
+7.00
+</td> <td align="right"> 
+4.00
+</td> </tr>
+  <tr> <td align="right"> 
+4
+</td> <td align="right"> 
+7.00
+</td> <td align="right"> 
+22.00
+</td> </tr>
+  <tr> <td align="right"> 
+5
+</td> <td align="right"> 
+8.00
+</td> <td align="right"> 
+16.00
+</td> </tr>
+  <tr> <td align="right"> 
+6
+</td> <td align="right"> 
+9.00
+</td> <td align="right"> 
+10.00
+</td> </tr>
+   </table>
+
+``` {.r}
+
+# Styling table using html properties
+print(tab, type="html", html.table.attributes = list('border="0" bgcolor="#FFCC00" cellpadding="10"'))
+```
+
+<!-- html table generated in R 3.1.2 by xtable 1.7-4 package -->
+<!-- Tue Feb 10 13:47:07 2015 -->
+<table border="0" bgcolor="#FFCC00" cellpadding="10">
+<tr> <th>  </th> <th> 
+speed
+</th> <th> 
+dist
+</th>  </tr>
+  <tr> <td align="right"> 
+1
+</td> <td align="right"> 
+4.00
+</td> <td align="right"> 
+2.00
+</td> </tr>
+  <tr> <td align="right"> 
+2
+</td> <td align="right"> 
+4.00
+</td> <td align="right"> 
+10.00
+</td> </tr>
+  <tr> <td align="right"> 
+3
+</td> <td align="right"> 
+7.00
+</td> <td align="right"> 
+4.00
+</td> </tr>
+  <tr> <td align="right"> 
+4
+</td> <td align="right"> 
+7.00
+</td> <td align="right"> 
+22.00
+</td> </tr>
+  <tr> <td align="right"> 
+5
+</td> <td align="right"> 
+8.00
+</td> <td align="right"> 
+16.00
+</td> </tr>
+  <tr> <td align="right"> 
+6
+</td> <td align="right"> 
+9.00
+</td> <td align="right"> 
+10.00
+</td> </tr>
+   </table>
+
+TIP: if you use html.table.attributes and set the table class attribute you can style you output tables with CSS. Usually Ghost themes have a class for styling table, so if you set it to this class all you tables will be outputted in the same format.
 
 Update a post
 -------------
