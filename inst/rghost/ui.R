@@ -18,7 +18,7 @@ shinybootstrap2::withBootstrap2(
     shinyStore::initStore("store", "shinyStore-ghost"),
 
     # Navigation bar
-    bsNavBar("nav", brand = "GhostR", fixed = FALSE,
+    bsNavBar("nav", brand = "RGhost", fixed = FALSE,
              leftItems = list(
                bsNavDropDown2(inputId = "dd1", label = "File",
                               choices = list(c("Open file", "open"),
