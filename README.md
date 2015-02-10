@@ -20,7 +20,9 @@ RGhost code
 
 The current package is an clear alpha, the following features need to be implemented improved:
 
-[ ] Error handling [ ] Implement adding, updating tags for new and existing posts [ ] Implement uploading pictures with posts
+[] Error handling 
+[] Implement adding, updating tags for new and existing posts 
+[] Implement uploading pictures with posts
 
 Installation
 ------------
