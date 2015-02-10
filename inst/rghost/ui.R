@@ -21,9 +21,9 @@ shinybootstrap2::withBootstrap2(
     bsNavBar("nav", brand = "GhostR", fixed = FALSE,
              leftItems = list(
                bsNavDropDown2(inputId = "dd1", label = "File",
-                              choices = list(c("Open file [Ctrl+o]", "open"),
-                                             c("Save file [Ctrl+s]", "save"),
-                                             c("Render file [Ctrl+r]", "render"))),
+                              choices = list(c("Open file", "open"),
+                                             c("Save file", "save"),
+                                             c("Render file", "render"))),
                bsNavDropDown2(inputId = "dd2", label = "Ghost",
                               choices = list(c("Get Posts", "ghostg"),
                                              c("Post to  Ghost", "ghost"),
