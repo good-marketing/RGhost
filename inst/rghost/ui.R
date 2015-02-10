@@ -31,7 +31,7 @@ shinybootstrap2::withBootstrap2(
                                              c("Delete Post from  Ghost", "ghostd")
                               ))
              )
-             ,rightItems = list (textOutput("test"))),
+             ,rightItems = list (textOutput("login_status"))),
     fluidRow
     ( column
       (width=2,

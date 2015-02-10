@@ -18,6 +18,10 @@ The current implementation is based on Ghost version 0.5.7.
 RGhost code
 ===========
 
+The current package is an clear alpha, the following features need to be implemented improved:
+
+[ ] Error handling [ ] Implement adding, updating tags for new and existing posts [ ] Implement uploading pictures with posts
+
 Installation
 ------------
 
@@ -208,12 +212,12 @@ h1$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart245f2ea9f4bc&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart504c7cac71b0&#039; class = &#039;rChart highcharts&#039;&gt;&lt;/div&gt;    
     &lt;script type=&#039;text/javascript&#039;&gt;
     (function($){
         $(function () {
             var chart = new Highcharts.Chart({
- &quot;dom&quot;: &quot;chart245f2ea9f4bc&quot;,
+ &quot;dom&quot;: &quot;chart504c7cac71b0&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;credits&quot;: {
@@ -233,7 +237,7 @@ h1$show('iframesrc', cdn = TRUE)
 },
 &quot;chart&quot;: {
  &quot;type&quot;: &quot;spline&quot;,
-&quot;renderTo&quot;: &quot;chart245f2ea9f4bc&quot; 
+&quot;renderTo&quot;: &quot;chart504c7cac71b0&quot; 
 },
 &quot;series&quot;: [
  {
@@ -272,7 +276,7 @@ null
 &quot;legend&quot;: {
  &quot;symbolWidth&quot;:             80 
 },
-&quot;id&quot;: &quot;chart245f2ea9f4bc&quot; 
+&quot;id&quot;: &quot;chart504c7cac71b0&quot; 
 });
         });
     })(jQuery);
@@ -280,7 +284,7 @@ null
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart245f2ea9f4bc'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  highcharts  ' id='iframe-chart504c7cac71b0'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 In a similar fashion you can create interactive maps using the rMaps package
@@ -318,10 +322,10 @@ map$show('iframesrc', cdn = TRUE)
   &lt;/head&gt;
   &lt;body &gt;
     
-    &lt;div id = &#039;chart245f18027a93&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
+    &lt;div id = &#039;chart504c1d5c19c2&#039; class = &#039;rChart leaflet&#039;&gt;&lt;/div&gt;    
     &lt;script&gt;
   var spec = {
- &quot;dom&quot;: &quot;chart245f18027a93&quot;,
+ &quot;dom&quot;: &quot;chart504c1d5c19c2&quot;,
 &quot;width&quot;:            800,
 &quot;height&quot;:            400,
 &quot;urlTemplate&quot;: &quot;http://{s}.tile.osm.org/{z}/{x}/{y}.png&quot;,
@@ -331,7 +335,7 @@ map$show('iframesrc', cdn = TRUE)
 &quot;center&quot;: [          52.36,            4.9 ],
 &quot;zoom&quot;:              5,
 &quot;provider&quot;: &quot;Stamen.Watercolor&quot;,
-&quot;id&quot;: &quot;chart245f18027a93&quot; 
+&quot;id&quot;: &quot;chart504c1d5c19c2&quot; 
 }
 
   var map = L.map(spec.dom, spec.mapOpts)
@@ -373,7 +377,7 @@ map$show('iframesrc', cdn = TRUE)
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart245f18027a93'> </iframe>
+&lt;/html&gt; ' scrolling='no' frameBorder='0' seamless class='rChart  leaflet  ' id='iframe-chart504c1d5c19c2'> </iframe>
  <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
 Update a post

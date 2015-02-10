@@ -31,34 +31,37 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
  login_validate <- function(){
 
    # Check is input is provided
-   if(input$username == ""){
+   if(input$username == "" | input$password == "" | input$ghost_base_url == ""  ){
      send_message("Please fill out the necessary info.","info")
-                            return(FALSE)
-                           }
+                            return(FALSE)}
   else{
-   # Save credentials to store
-   updateStore(session, "username", isolate(input$username))
-   updateStore(session, "password", isolate(input$password))
-   updateStore(session, "ghost_base_url", isolate(input$ghost_base_url))
-   return(TRUE)
-  }
+   return(TRUE)}
  }
 
  #Active Login
  observe({
+
    if (input$connect > 0){
 
+     isolate({
      #Check if the login credentials are not empty and store them
      check_login <- login_validate()
 
-     if(check_login){
-     ## Call init variables
-      set_credentials(input$store$username,
-                      input$store$password,
-                      input$store$ghost_base_url)
+    if(check_login){
+
+
+    ## Call init variables
+    set_credentials(input$username,
+                    input$password,
+                    input$ghost_base_url)
 
        # Save correct credentials
        if (ghost$return_credentials$status){
+
+         ## Save credentials to store
+         updateStore(session, "username", isolate(input$username))
+         updateStore(session, "password", isolate(input$password))
+         updateStore(session, "ghost_base_url", isolate(input$ghost_base_url))
 
          #Send message
          send_message("Authentication success and settings stored.","success")
@@ -68,32 +71,27 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
        }
        else{
-        #Send message
+         #Send message
          send_message("Authentication failed, please review your credentials.","danger")
 
          #Set reactive value
          ghost_login$status <- FALSE
        }
-
      }
+    })
    }
  })
 
 
 
- output$test <- renderText({
+ output$login_status <- renderText({
 
    if(ghost_login$status){paste("Logged in as ",input$store$username,sep="")}
    else("Not logged in.")
 
  })
 
-  ### Init logic###
-  # md_file <- readChar(md_name, file.info(md_name)$size)
-  # isolate({updateAceEditor(session, "rmd", value = md_file)})
-
   ## Message Function
-
   send_message <- function(message,status){
     createAlert(session,
                 inputId = "alert_anchor",
@@ -178,7 +176,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
   ### Render file logic ###
   observe({
-    if (input$my_render > 0 | !is.null(input$render_key)){
+    if (input$my_render > 0){
       isolate({
         cat(input$rmd, file = md_name)
         doc <- render(md_name)
@@ -189,7 +187,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
   ### Save file logic ###
   observe({
-    if (input$my_save > 0 | !is.null(input$save_key)){
+    if (input$my_save > 0 ){
       isolate({cat(input$rmd, file = md_name)})
     }
   })
@@ -220,7 +218,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
             selectizeInput('Tags', 'Tags',
                            choices = ghost$taglist_list,
                            multiple=TRUE,
-                           options=list(create=TRUE))
+                           options=list(create=FALSE))
         })
       })
     }
@@ -255,7 +253,7 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
         updateSelectInput(session, "Page", selected = Post$page)
         updateTextInput(session, "Slug", value = Post$slug)
         updateTextInput(session, "Image", value = Post$image)
-        updateSelectizeInput(session, 'Tags',choices=ghost$taglist_list,selected = setNames(list.map(Post$tags,id),list.mapv(Post$tags,name)),server = TRUE) #update tags
+        updateSelectizeInput(session, 'Tags', selected = setNames(list.map(Post$tags,id),list.mapv(Post$tags,name)),server = TRUE) #update tags
         updateSelectInput(session, "Users", selected = Post$author)
       })
     }
@@ -264,20 +262,20 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
 
   ### ### Post to Ghost
   observe({
-    if (input$my_ghost > 0 | !is.null(input$ghost_key))
+    if (input$my_ghost > 0)
       {
 
       isolate({
-           #Create post body
+           ##Create post body
            post_body <- create_post_body()
 
-           # Make the post
+           ## Make the post
            post_response <- create_post_ghost(post_body)
 
-          #Save original RMarkDown
+          ## Save original RMarkDown
           cat(input$rmd, file = paste("posts/",gsub('/','',post_response$content$posts$url),".Rmd",sep=""))
 
-          #User Feedback
+          ## User Feedback
           if(post_response$status){
           send_message(paste(post_response$message,
                              '<a href="',ghost$return_credentials$url,post_response$content$posts$url,
@@ -293,14 +291,14 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
     if (input$my_ghostu > 0 | !is.null(input$ghost_keyu)){
       isolate({
 
-        #Create post body
+        ## Create post body
         post_body <- create_post_body()
 
-        # Set input variables
+        ## Set input variables
         id <- input$Posts
         post_response <- update_post_ghost(id,post_body)
 
-        #User Feedback
+        ## User Feedback
         if(post_response$status){
           send_message(paste(post_response$message,
                              '<a href="',ghost$return_credentials$url,post_response$content$posts$url,
@@ -314,13 +312,13 @@ shinybootstrap2::withBootstrap2(function(input, output, session) {
  observe({
    if (input$my_ghostd > 0){
      isolate({
-       # Set input variables
+       ## Set input variables
        id <- input$Posts
 
-       # Make the call
+       ## Make the call
        post_response <- delete_post_ghost(id)
 
-       #User Feedback
+       ## User Feedback
        if(post_response$status){
          send_message(paste(post_response$message,
                             '<a href="',ghost$return_credentials$url,post_response$content$posts$url,
