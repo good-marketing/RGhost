@@ -18,7 +18,12 @@ The current implementation is based on Ghost version 0.5.7.
 RGhost code
 ===========
 
-The current package is an clear alpha, the following features need to be implemented improved: - [ ] Update secuirity of storing passwords - [ ] Error handling - [ ] Implement adding, updating tags for new and existing posts - [ ] Implement uploading pictures with posts
+The current package is an clear alpha, the following features need to be implemented improved: - [ ] Update secuirity of storing passwords 
+
+- [ ] Error handling 
+- [ ] Implement adding, updating tags for new and existing posts 
+- [ ] Implement uploading pictures with posts
+
 
 Installation
 ------------
